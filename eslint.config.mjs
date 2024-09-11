@@ -7,6 +7,7 @@ export default antfu(
   {
     react: true,
     typescript: true,
+    jsonc: false,
 
     lessOpinionated: true,
     isInEditor: false,

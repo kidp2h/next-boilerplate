@@ -12,6 +12,7 @@
     "check-types": "tsc --noEmit --pretty",
     "commit": "cz",
     "prepare": "husky",
+    "format":"prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "test": "vitest run"
   },
   "dependencies": {
