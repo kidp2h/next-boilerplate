@@ -14,6 +14,8 @@ export default antfu(
 
     stylistic: {
       semi: true,
+      indent: 2,
+      quotes: 'single',
     },
 
     formatters: {
@@ -22,6 +24,9 @@ export default antfu(
 
     ignores: [
       'next-env.d.ts',
+      '**/ui/*.tsx',
+      '**/hooks/*.ts',
+      'tailwind.config.ts',
     ],
   },
   ...tailwind.configs['flat/recommended'],
@@ -44,10 +49,7 @@ export default antfu(
     },
   },
   {
-    files: [
-      '**/*.spec.ts',
-      '**/*.e2e.ts',
-    ],
+    files: ['**/*.spec.ts', '**/*.e2e.ts'],
   },
   {
     rules: {
@@ -55,8 +57,8 @@ export default antfu(
       'sort-imports': 'off', // Avoid conflicts with `simple-import-sort` plugin
       'ts/consistent-type-definitions': ['error', 'type'], // Use `type` instead of `interface`
       'react/prefer-destructuring-assignment': 'off',
-      'node/prefer-global/process': 'off', // Allow using `process.env`
-
+      'node/prefer-global/process': 'off', // Allow using `process.env`,
+      'no-console': 'error',
     },
   },
 );
