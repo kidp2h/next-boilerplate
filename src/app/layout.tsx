@@ -3,7 +3,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 
-import { StoreProvider } from './StoreProvider';
+import { StoreProvider } from '@/providers/StoreProvider';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
