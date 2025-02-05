@@ -1,12 +1,19 @@
 import antfu from '@antfu/eslint-config';
 import nextPlugin from '@next/eslint-plugin-next';
-import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import tailwind from 'eslint-plugin-tailwindcss';
 
 export default antfu(
   {
     react: true,
-    typescript: true,
+    typescript: {
+      overrides: {
+        'ts/consistent-type-imports': [
+          'error',
+          { prefer: 'type-imports', fixStyle: 'inline-type-imports' },
+        ],
+        'ts/consistent-type-definitions': ['error', 'type'], // Use `type` instead of `interface`
+      },
+    },
     jsonc: false,
 
     lessOpinionated: true,
@@ -20,6 +27,8 @@ export default antfu(
 
     formatters: {
       css: true,
+      html: true,
+      markdown: 'prettier',
     },
 
     ignores: [
@@ -40,25 +49,14 @@ export default antfu(
     },
   },
   {
-    plugins: {
-      'simple-import-sort': simpleImportSort,
-    },
-    rules: {
-      'simple-import-sort/imports': 'error',
-      'simple-import-sort/exports': 'error',
-    },
-  },
-  {
     files: ['**/*.spec.ts', '**/*.e2e.ts'],
   },
   {
     rules: {
-      'import/order': 'off', // Avoid conflicts with `simple-import-sort` plugin
-      'sort-imports': 'off', // Avoid conflicts with `simple-import-sort` plugin
-      'ts/consistent-type-definitions': ['error', 'type'], // Use `type` instead of `interface`
       'react/prefer-destructuring-assignment': 'off',
       'node/prefer-global/process': 'off', // Allow using `process.env`,
-      'no-console': 'error',
+      'no-console': 'warn',
+      'react-refresh/only-export-components': 'off',
     },
   },
 );

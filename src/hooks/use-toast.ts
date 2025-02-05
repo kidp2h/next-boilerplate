@@ -2,8 +2,7 @@
 
 // Inspired by react-hot-toast library
 import * as React from 'react';
-import { useDispatch, useSelector, useStore } from 'react-redux';
-import type { AppDispatch, AppStore, RootState } from '@/lib/store';
+
 import type { ToastActionElement, ToastProps } from '@/components/ui/toast';
 
 const TOAST_LIMIT = 1;
@@ -50,9 +49,9 @@ type Action =
       toastId?: ToasterToast['id'];
     };
 
-type State = {
+interface State {
   toasts: ToasterToast[];
-};
+}
 
 const toastTimeouts = new Map<string, ReturnType<typeof setTimeout>>();
 
@@ -65,7 +64,7 @@ const addToRemoveQueue = (toastId: string) => {
     toastTimeouts.delete(toastId);
     dispatch({
       type: 'REMOVE_TOAST',
-      toastId,
+      toastId: toastId,
     });
   }, TOAST_REMOVE_DELAY);
 
@@ -157,15 +156,13 @@ function toast({ ...props }: Toast) {
       id,
       open: true,
       onOpenChange: (open) => {
-        if (!open) {
-          dismiss();
-        }
+        if (!open) dismiss();
       },
     },
   });
 
   return {
-    id,
+    id: id,
     dismiss,
     update,
   };
@@ -191,9 +188,4 @@ function useToast() {
   };
 }
 
-// Use throughout your app instead of plain `useDispatch` and `useSelector`
-const useAppDispatch = useDispatch.withTypes<AppDispatch>();
-const useAppSelector = useSelector.withTypes<RootState>();
-const useAppStore = useStore.withTypes<AppStore>();
-
-export { toast, useToast, useAppDispatch, useAppSelector, useAppStore };
+export { useToast, toast };
