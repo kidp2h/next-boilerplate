@@ -3,6 +3,7 @@ const nextConfig = {
   eslint: {
     dirs: ['.'],
   },
+  transpilePackages: ['geist'],
   reactStrictMode: true,
 };
 

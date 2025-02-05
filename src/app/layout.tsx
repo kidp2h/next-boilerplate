@@ -1,23 +1,14 @@
 import './globals.css';
 
+import { GeistMono } from 'geist/font/mono';
+import { GeistSans } from 'geist/font/sans';
 import type { Metadata } from 'next';
-import localFont from 'next/font/local';
 
-import { StoreProvider } from '@/providers/StoreProvider';
-
-const geistSans = localFont({
-  src: './fonts/GeistVF.woff',
-  variable: '--font-geist-sans',
-  weight: '100 900',
-});
-const geistMono = localFont({
-  src: './fonts/GeistMonoVF.woff',
-  variable: '--font-geist-mono',
-  weight: '100 900',
-});
+import { GlobalStoreProvider } from '@/providers/global-store-provider';
+import { ThemeProvider } from '@/providers/theme-provider';
 
 export const metadata: Metadata = {
-  title: 'App',
+  title: 'NextJS Template',
 };
 
 export default function RootLayout({
@@ -28,9 +19,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${GeistSans.variable} ${GeistMono.variable} ${GeistSans.className} antialiased`}
       >
-        <StoreProvider>{children}</StoreProvider>
+        <GlobalStoreProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </GlobalStoreProvider>
       </body>
     </html>
   );
