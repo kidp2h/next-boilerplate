@@ -1,38 +1,38 @@
-'use client';
-import React, { useContext, useRef } from 'react';
-import { useStore } from 'zustand';
+'use client'
+import React, { useContext, useRef } from 'react'
+import { useStore } from 'zustand'
 
 import {
   type GlobalStore,
   createGlobalStore,
-} from '@/lib/zustand/stores/global-store';
+} from '@/lib/zustand/stores/global-store'
 
 type GlobalStoreProviderProps = {
-  children: React.ReactNode;
-};
+  children: React.ReactNode
+}
 export const GlobalStoreContext = React.createContext<
   GlobalStoreApi | undefined
->(undefined);
-export type GlobalStoreApi = ReturnType<typeof createGlobalStore>;
+>(undefined)
+export type GlobalStoreApi = ReturnType<typeof createGlobalStore>
 
 export const GlobalStoreProvider = ({ children }: GlobalStoreProviderProps) => {
-  const storeRef = useRef<GlobalStoreApi>();
+  const storeRef = useRef<GlobalStoreApi>()
   if (!storeRef.current) {
-    storeRef.current = createGlobalStore();
+    storeRef.current = createGlobalStore()
   }
   return (
     <GlobalStoreContext.Provider value={storeRef.current}>
       {children}
     </GlobalStoreContext.Provider>
-  );
-};
+  )
+}
 
 export const useGlobalStore = <T,>(selector: (store: GlobalStore) => T): T => {
-  const globalStoreContext = useContext(GlobalStoreContext);
+  const globalStoreContext = useContext(GlobalStoreContext)
 
   if (!globalStoreContext) {
-    throw new Error(`useGlobalStore must be used within GlobalStoreProvider`);
+    throw new Error('useGlobalStore must be used within GlobalStoreProvider')
   }
 
-  return useStore(globalStoreContext, selector);
-};
+  return useStore(globalStoreContext, selector)
+}

@@ -1,19 +1,18 @@
-'use client';
+'use client'
 
-import { MoonIcon, SunIcon } from 'lucide-react';
-import { useTheme } from 'next-themes';
-import * as React from 'react';
+import { MoonIcon, SunIcon } from 'lucide-react'
+import { useTheme } from 'next-themes'
 
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/button'
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '@/components/ui/tooltip';
+} from '@/components/ui/tooltip'
 
 export function ModeToggle() {
-  const { setTheme, theme } = useTheme();
+  const { setTheme, theme } = useTheme()
 
   return (
     <TooltipProvider disableHoverableContent>
@@ -33,5 +32,5 @@ export function ModeToggle() {
         <TooltipContent side="bottom">Change theme</TooltipContent>
       </Tooltip>
     </TooltipProvider>
-  );
+  )
 }

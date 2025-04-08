@@ -1,4 +1,4 @@
 module.exports = {
-  '*': ['npm run format', 'eslint --fix --no-warn-ignored'],
+  '*': ['biome format ./src --fix', 'biome lint --write --unsafe ./src'],
   '**/*.ts?(x)': () => 'npm run check-types',
-};
+}
