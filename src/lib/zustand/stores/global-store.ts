@@ -1,10 +1,10 @@
-import { createJSONStorage, devtools, persist } from 'zustand/middleware';
-import { createStore } from 'zustand/vanilla';
+import { createJSONStorage, devtools, persist } from 'zustand/middleware'
+import { createStore } from 'zustand/vanilla'
 
-import type { CounterSlice } from '@/lib/zustand/slices/counter-slice';
-import { createCounterSlice } from '@/lib/zustand/slices/counter-slice';
+import type { CounterSlice } from '@/lib/zustand/slices/counter-slice'
+import { createCounterSlice } from '@/lib/zustand/slices/counter-slice'
 
-export type GlobalStore = CounterSlice;
+export type GlobalStore = CounterSlice
 
 export const createGlobalStore = () => {
   return createStore<GlobalStore>()(
@@ -20,5 +20,5 @@ export const createGlobalStore = () => {
         },
       ),
     ),
-  );
-};
+  )
+}

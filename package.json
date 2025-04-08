@@ -7,12 +7,12 @@
     "build": "next build",
     "start": "next start",
     "clean": "rimraf .next out coverage",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint:fix": "biome lint --write --unsafe ./src",
+    "lint": "biome lint ./src",
     "check-types": "tsc --noEmit --pretty",
     "commit": "cz",
     "prepare": "husky",
-    "format": "prettier --write .",
+    "format": "biome format ./src --fix",
     "test": "vitest run"
   },
   "dependencies": {
@@ -55,6 +55,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.27.3",
+    "@biomejs/biome": "1.9.4",
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
     "@commitlint/cz-commitlint": "^19.5.0",
